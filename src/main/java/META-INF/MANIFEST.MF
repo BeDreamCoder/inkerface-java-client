@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Class-Path: rxjava-1.2.4.jar logging-interceptor-3.8.1.jar bcprov-jdk1
+ 5on-1.54.jar slf4j-api-1.7.25.jar okhttp-3.8.1.jar jackson-core-2.8.5
+ .jar asm-util-5.0.3.jar jackson-annotations-2.8.0.jar jnr-ffi-2.1.2.j
+ ar jnr-posix-3.0.33.jar jackson-databind-2.8.5.jar asm-commons-5.0.3.
+ jar jffi-1.2.14-native.jar okio-1.13.0.jar rlp-3.3.1.jar crypto-3.3.1
+ .jar jnr-enxio-0.14.jar abi-3.3.1.jar jnr-unixsocket-0.15.jar asm-5.0
+ .3.jar jnr-x86asm-1.0.2.jar protobuf-java-3.5.1.jar utils-3.3.1.jar t
+ uples-3.3.1.jar jnr-constants-0.9.6.jar asm-tree-5.0.3.jar asm-analys
+ is-5.0.3.jar jffi-1.2.14.jar core-3.3.1.jar
+Main-Class: com.sign.App
+

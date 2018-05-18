@@ -1,0 +1,40 @@
+<component name="ArtifactManager">
+  <artifact name="SignTx:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SignTx_jar</output-path>
+    <root id="root">
+      <element id="archive" name="SignTx.jar">
+        <element id="module-output" name="SignTx" />
+      </element>
+      <element id="library" level="project" name="Maven: io.reactivex:rxjava:1.2.4" />
+      <element id="library" level="project" name="Maven: com.squareup.okhttp3:logging-interceptor:3.8.1" />
+      <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk15on:1.54" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
+      <element id="library" level="project" name="Maven: com.squareup.okhttp3:okhttp:3.8.1" />
+      <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.5" />
+      <element id="library" level="project" name="Maven: org.ow2.asm:asm-util:5.0.3" />
+      <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.0" />
+      <element id="library" level="project" name="Maven: com.github.jnr:jnr-ffi:2.1.2" />
+      <element id="library" level="project" name="Maven: com.github.jnr:jnr-posix:3.0.33" />
+      <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.8.5" />
+      <element id="library" level="project" name="Maven: org.ow2.asm:asm-commons:5.0.3" />
+      <element id="library" level="project" name="Maven: com.github.jnr:jffi:native:1.2.14" />
+      <element id="library" level="project" name="Maven: com.squareup.okio:okio:1.13.0" />
+      <element id="library" level="project" name="Maven: org.web3j:rlp:3.3.1" />
+      <element id="library" level="project" name="Maven: org.web3j:crypto:3.3.1" />
+      <element id="library" level="project" name="Maven: com.github.jnr:jnr-enxio:0.14" />
+      <element id="library" level="project" name="Maven: org.web3j:abi:3.3.1" />
+      <element id="library" level="project" name="Maven: com.github.jnr:jnr-unixsocket:0.15" />
+      <element id="library" level="project" name="Maven: org.ow2.asm:asm:5.0.3" />
+      <element id="library" level="project" name="Maven: com.github.jnr:jnr-x86asm:1.0.2" />
+      <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.5.1" />
+      <element id="library" level="project" name="Maven: org.web3j:utils:3.3.1" />
+      <element id="library" level="project" name="Maven: org.web3j:tuples:3.3.1" />
+      <element id="library" level="project" name="Maven: com.github.jnr:jnr-constants:0.9.6" />
+      <element id="library" level="project" name="Maven: org.ow2.asm:asm-tree:5.0.3" />
+      <element id="library" level="project" name="Maven: org.ow2.asm:asm-analysis:5.0.3" />
+      <element id="library" level="project" name="Maven: com.github.jnr:jffi:1.2.14" />
+      <element id="library" level="project" name="Maven: org.web3j:core:3.3.1" />
+      <element id="archive" name="archive.jar" />
+    </root>
+  </artifact>
+</component>
