@@ -28,8 +28,9 @@ public class SignTx {
         return null;
     }
 
-    public BigInteger PublicKeyFromPrivate(String priKey) {
-        return Sign.publicKeyFromPrivate(new BigInteger(Numeric.cleanHexPrefix(priKey), 16));
+    public String PublicKeyFromPrivate(String priKey) {
+        BigInteger pubKeyInHex =  Sign.publicKeyFromPrivate(new BigInteger(Numeric.cleanHexPrefix(priKey), 16));
+        return pubKeyInHex.toString(16);
     }
 
     private byte[] concat(byte[] b1, byte[] b2) {
