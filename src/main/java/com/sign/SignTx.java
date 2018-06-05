@@ -12,17 +12,23 @@ import java.util.Arrays;
 
 public class SignTx {
 
-    public String[] CreateAccount(String seed) {
+    public String[] CreateAccount() {
         try {
-            ECKeyPair ecKeyPair = Keys.createEcKeyPair();
-            BigInteger privateKeyInDec = ecKeyPair.getPrivateKey();
-            String sPrivatekeyInHex = privateKeyInDec.toString(16);
+            // create new private/public key pair
+            ECKeyPair keyPair = Keys.createEcKeyPair();
 
-            WalletFile wallet = Wallet.createLight(seed, ecKeyPair);
-            String address = wallet.getAddress();
+            BigInteger publicKey = keyPair.getPublicKey();
+            //String publicKeyHex = Numeric.toHexStringWithPrefix(publicKey);
 
-            return new String[]{"i" + address, sPrivatekeyInHex};
-        } catch (NoSuchAlgorithmException | CipherException | NoSuchProviderException | InvalidAlgorithmParameterException e) {
+            BigInteger privateKey = keyPair.getPrivateKey();
+            String privateKeyHex = Numeric.toHexStringWithPrefix(privateKey);
+
+            // create credentials + address from private/public key pair
+            Credentials credentials = Credentials.create(new ECKeyPair(privateKey, publicKey));
+            String address = credentials.getAddress();
+
+            return new String[]{"i" + Numeric.cleanHexPrefix(address), Numeric.cleanHexPrefix(privateKeyHex)};
+        } catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidAlgorithmParameterException e) {
             e.printStackTrace();
         }
         return null;
