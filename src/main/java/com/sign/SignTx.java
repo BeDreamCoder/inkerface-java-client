@@ -1,3 +1,7 @@
+//
+//  Created by 张泰林 on 2018/5/15.
+//  Copyright © 2018年 ziggurat. All rights reserved.
+//
 package com.sign;
 
 import com.google.protobuf.ByteString;
@@ -12,7 +16,7 @@ import java.util.Arrays;
 
 public class SignTx {
 
-    public String[] CreateAccount() {
+    public static String[] CreateAccount() {
         try {
             // create new private/public key pair
             ECKeyPair keyPair = Keys.createEcKeyPair();
@@ -34,26 +38,28 @@ public class SignTx {
         return null;
     }
 
-    public String PublicKeyFromPrivate(String priKey) {
-        BigInteger pubKeyInHex =  Sign.publicKeyFromPrivate(new BigInteger(Numeric.cleanHexPrefix(priKey), 16));
-        return pubKeyInHex.toString(16);
+    public static String AddressFromPrivateKey(String priKey) {
+        BigInteger privateKey = new BigInteger(Numeric.cleanHexPrefix(priKey), 16);
+        BigInteger publicKey = Sign.publicKeyFromPrivate(privateKey);
+        String address = Keys.getAddress(publicKey);
+
+        return "i" + Numeric.cleanHexPrefix(address);
     }
 
-    private byte[] concat(byte[] b1, byte[] b2) {
+    private static byte[] concat(byte[] b1, byte[] b2) {
         byte[] result = Arrays.copyOf(b1, b1.length + b2.length);
         System.arraycopy(b2, 0, result, b1.length, b2.length);
         return result;
     }
 
-    public String GetSign(String ccId, String fcn,String[] args,String msg,long counter,String inkLimit,String priKey) {
-
+    public static String GetSign(String ccId, String fcn, String[] args, String msg,
+                                 long counter, String inkLimit, String priKey) {
         BigInteger pubKey = Sign.publicKeyFromPrivate(new BigInteger(Numeric.cleanHexPrefix(priKey), 16));
         String signerAddress = 'i' + Keys.getAddress(pubKey);
-        System.out.println("Recovered address: " + signerAddress);
 
         Chaincode.ChaincodeInput.Builder input = Chaincode.ChaincodeInput.newBuilder();
         input.addArgs(ByteString.copyFromUtf8(fcn != null ? fcn : "invoke"));
-        for(String arg : args){
+        for (String arg : args) {
             input.addArgs(ByteString.copyFromUtf8(arg));
         }
 
@@ -96,7 +102,7 @@ public class SignTx {
         // Now use java signature to verify from the blockchain
 //        Bytes32 message = new Bytes32(hexMessage);
 
-        byte[] v = Numeric.toBytesPadded(BigInteger.valueOf(signMessage.getV()-27), 1);
+        byte[] v = Numeric.toBytesPadded(BigInteger.valueOf(signMessage.getV() - 27), 1);
         byte[] result = concat(concat(signMessage.getR(), signMessage.getS()), v);
 
 //        System.out.println("Result: " +  Numeric.cleanHexPrefix(Numeric.toHexString(result)));
