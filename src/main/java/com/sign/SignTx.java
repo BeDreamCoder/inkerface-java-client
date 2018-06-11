@@ -14,7 +14,13 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.Arrays;
 
+
 public class SignTx {
+    public enum PrvkeyCode {
+        PrvkeyValid,
+        PrvkeyLengthIllegal,
+        PrvkeyContainsIllegalChars
+    }
 
     public static String[] CreateAccount() {
         try {
@@ -44,6 +50,19 @@ public class SignTx {
         String address = Keys.getAddress(publicKey);
 
         return "i" + Numeric.cleanHexPrefix(address);
+    }
+
+    public static PrvkeyCode PrivateKeyVerify(String priKey) {
+        boolean bValid = WalletUtils.isValidPrivateKey(priKey);
+        if (!bValid) {
+            return PrvkeyCode.PrvkeyLengthIllegal;
+        }
+        String regex = "^[A-Fa-f0-9]+$";
+        if (!priKey.matches(regex)) {
+            return PrvkeyCode.PrvkeyContainsIllegalChars;
+        }
+
+        return PrvkeyCode.PrvkeyValid;
     }
 
     private static byte[] concat(byte[] b1, byte[] b2) {
