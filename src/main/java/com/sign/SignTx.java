@@ -53,8 +53,8 @@ public class SignTx {
     }
 
     public static PrvkeyCode PrivateKeyVerify(String priKey) {
-        boolean bValid = WalletUtils.isValidPrivateKey(priKey);
-        if (!bValid) {
+        String cleanPrivateKey = Numeric.cleanHexPrefix(priKey);
+        if (cleanPrivateKey.length() != 64) {
             return PrvkeyCode.PrvkeyLengthIllegal;
         }
         String regex = "^[A-Fa-f0-9]+$";
