@@ -22,6 +22,8 @@ public class SignTx {
         PrvkeyContainsIllegalChars
     }
 
+    private static String AddressPrefix = "i";
+
     public static String[] CreateAccount() {
         try {
             // create new private/public key pair
@@ -37,7 +39,7 @@ public class SignTx {
             Credentials credentials = Credentials.create(new ECKeyPair(privateKey, publicKey));
             String address = credentials.getAddress();
 
-            return new String[]{"i" + Numeric.cleanHexPrefix(address), Numeric.cleanHexPrefix(privateKeyHex)};
+            return new String[]{AddressPrefix + Numeric.cleanHexPrefix(address), Numeric.cleanHexPrefix(privateKeyHex)};
         } catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidAlgorithmParameterException e) {
             e.printStackTrace();
         }
@@ -49,7 +51,7 @@ public class SignTx {
         BigInteger publicKey = Sign.publicKeyFromPrivate(privateKey);
         String address = Keys.getAddress(publicKey);
 
-        return "i" + Numeric.cleanHexPrefix(address);
+        return AddressPrefix + Numeric.cleanHexPrefix(address);
     }
 
     public static PrvkeyCode PrivateKeyVerify(String priKey) {
@@ -74,7 +76,7 @@ public class SignTx {
     public static String GetSign(String ccId, String fcn, String[] args, String msg,
                                  long counter, String inkLimit, String priKey) {
         BigInteger pubKey = Sign.publicKeyFromPrivate(new BigInteger(Numeric.cleanHexPrefix(priKey), 16));
-        String signerAddress = 'i' + Keys.getAddress(pubKey);
+        String signerAddress = AddressPrefix + Keys.getAddress(pubKey);
 
         Chaincode.ChaincodeInput.Builder input = Chaincode.ChaincodeInput.newBuilder();
         input.addArgs(ByteString.copyFromUtf8(fcn != null ? fcn : "invoke"));
